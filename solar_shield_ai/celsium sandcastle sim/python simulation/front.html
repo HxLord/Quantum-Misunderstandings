@@ -1,0 +1,123 @@
+<div id="cesiumContainer"></div>
+
+<style>
+    #ui-overlay {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        color: #00ffea;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 25px;
+        box-sizing: border-box;
+        z-index: 10;
+    }
+
+    /* Верхняя панель */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid rgba(0, 255, 234, 0.5);
+        padding-bottom: 10px;
+        background: linear-gradient(to bottom, rgba(0,40,40,0.8), transparent);
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        text-shadow: 0 0 10px #00ffea;
+    }
+
+    .badge {
+        background: rgba(0, 255, 234, 0.1);
+        padding: 8px 20px;
+        border: 1px solid #00ffea;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: all 0.5s ease;
+    }
+
+    /* Левая панель статуса */
+    .system-status {
+        position: absolute;
+        top: 100px; left: 25px;
+        width: 260px;
+        background: rgba(5, 15, 25, 0.85);
+        border: 1px solid rgba(0, 255, 234, 0.3);
+        border-left: 5px solid #00ffea;
+        padding: 20px;
+        backdrop-filter: blur(5px);
+    }
+
+    .system-status h3 {
+        margin: 0 0 15px 0;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #fff;
+    }
+
+    .stat-row { 
+        margin-bottom: 10px; 
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .stat-value { color: #fff; font-weight: bold; }
+
+    /* Лог миссии снизу */
+    .log-container {
+        position: absolute;
+        bottom: 40px; left: 25px;
+        width: 450px; height: 160px;
+        background: rgba(5, 15, 25, 0.85);
+        border: 1px solid rgba(0, 255, 234, 0.3);
+        padding: 15px;
+        font-size: 11px;
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column-reverse; /* Новые сообщения сверху */
+    }
+
+    #console-log {
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    /* Анимация критической угрозы */
+    .danger-active {
+        animation: alarm-pulse 0.8s infinite alternate;
+        border-color: #ff004c !important;
+        color: #ff004c !important;
+    }
+
+    @keyframes alarm-pulse {
+        from { box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.2); }
+        to { box-shadow: inset 0 0 150px rgba(255, 0, 0, 0.5); background: rgba(50, 0, 0, 0.2); }
+    }
+</style>
+
+<div id="ui-overlay">
+    <div class="header">
+        <div class="logo">SAT-CORE // ALPHA</div>
+        <div id="flare-badge" class="badge">SCANNING SUN...</div>
+    </div>
+
+    <div id="status-box" class="system-status">
+        <h3>SATELLITE DIAGNOSTICS</h3>
+        <div class="stat-row">CORE TEMP: <span id="cpu-status" class="stat-value">34°C</span></div>
+        <div class="stat-row">DATA LINK: <span id="comm-status" class="stat-value">ENCRYPTED</span></div>
+        <div class="stat-row">RADIATION SHIELD: <span id="shield-status" class="stat-value">STANDBY</span></div>
+        <div class="stat-row">STATION KEEPING: <span class="stat-value">ACTIVE</span></div>
+    </div>
+
+    <div class="log-container">
+        <div id="console-log">
+            <div>> System boot sequence complete...</div>
+            <div>> Establishing deep space telemetry...</div>
+        </div>
+        <h3 style="margin-top:0; font-size: 14px; border-bottom: 1px solid rgba(0,255,234,0.2); padding-bottom:5px;">LIVE TELEMETRY LOG</h3>
+    </div>
+</div>
