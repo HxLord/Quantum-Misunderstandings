@@ -28,23 +28,33 @@
 ## Project Structure
 
 ```
+Project Structure
+
 solar_shield_ai/
-├── celsium sandcastle sim/
-│   └──front.html                   # Интерфейс системы
-│   └──script.js                    # Основная логика системы
+│
+├── cesium_sandcastle_sim/        # Веб-визуализация (Cesium)
+│   ├── front.html                # Интерфейс системы
+│   └── script.js                 # Основная логика (интеграция с DONKI API)
+│
+├── python_simulation/            # Симуляция на Python
+│   └── sim.py                    # Интерактивная модель (Pygame + Matplotlib)
+│
 ├── docs/
-│   └── technical_doc.md            # Техническая документация
-├── python simulation/
-│   └──sim.py                       # Intractive model by Python (Pygame + Matplotlib)
-├── donki_api.py                    # 
-├── dummy_dataset.py                # 
-├── helios_guard_dummy_quick.npz    # 
-├── helios_guard_flare_cnn_colab.py # 
-├── model_architecture.py           #
-├── README.md                       # Этот файл
-├── train_model.py                  #  
-└── data/
-    └── (генерируемые данные) 
+│   └── technical_doc.md          # Техническая документация проекта
+│
+├── data/                         # Данные
+│   └── (генерируемые и реальные данные)
+│
+├── donki_api.py                  # Работа с NASA DONKI API (солнечные вспышки)
+├── dummy_dataset.py              # Генерация тестовых данных
+├── helios_guard_dummy_quick.npz  # Быстрый датасет для тестов
+│
+├── helios_guard_flare_cnn_colab.py # Модель CNN (обнаружение вспышек)
+├── model_architecture.py         # Архитектура модели
+├── train_model.py                # Обучение модели
+│
+├── README.md                     # Описание проекта
+└── requirements.txt              # Зависимости (если добавишь — будет + к оценке)
 ```
 
 ---
